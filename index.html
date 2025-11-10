@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicacion del Clima</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body> 
+    <div class="container"> 
+        <h1>Consulta de clima</h1> 
+
+        <div class="search-box"> 
+            <input type="text" id="city" placeholder="Ciudad (ej. Toluca)"> 
+            <input type="text" id="country" placeholder="País (opcional, ej: MX)">
+            <button id="search">Buscar</button>
+        </div> 
+
+        <div id="weather-info" class="weather-card hidden"> 
+            <h2 id="location"></h2> 
+            <p id="description"></p> 
+            <p><strong>Temperatura:</strong> <span id="temperature"></span> °C</p>
+            <p><strong>Humedad:</strong> <span id="humidity"></span>%</p> 
+            <p><strong>Viento:</strong> <span id="wind"></span> km/h</p> 
+        </div> 
+
+        <p id="error-message" class="error hidden"></p>
+    </div> 
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
