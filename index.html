@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicacion del Clima</title>
+    <title>Aplicacion del clima</title> 
     <link rel="stylesheet" href="styles.css">
 </head>
 <body> 
     <div class="container"> 
         <h1>Consulta de clima</h1> 
 
-        <div class="search-box"> 
-            <input type="text" id="city" placeholder="Ciudad (ej. Toluca)"> 
-            <input type="text" id="country" placeholder="País (opcional, ej: MX)">
-            <button id="search">Buscar</button>
-        </div> 
+        <form id="weather-form" class="search-box"> 
+            <input type="text" id="city" placeholder="Ciudad (ej. Toluca)" required>
+            <input type="text" id="country" placeholder="País (opcional, ej. MX)"> 
+            <button type="submit" id="search">Buscar</button>
+        </form> 
 
         <div id="weather-info" class="weather-card hidden"> 
             <h2 id="location"></h2> 
             <p id="description"></p> 
             <p><strong>Temperatura:</strong> <span id="temperature"></span> °C</p>
-            <p><strong>Humedad:</strong> <span id="humidity"></span>%</p> 
-            <p><strong>Viento:</strong> <span id="wind"></span> km/h</p> 
+            <p><strong>Humedad:</strong> <span id="humidity"></span>%</p>
+            <p><strong>Viento:</strong> <span id="wind"></span> km/h</p>
         </div> 
 
         <p id="error-message" class="error hidden"></p>

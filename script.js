@@ -1,8 +1,8 @@
 const apiKey = "0d1a7c7cd26c3e9abc5f1545a4d3d29d"; 
 
+const form = document.getElementById("weather-form");
 const cityInput = document.getElementById("city");
 const countryInput = document.getElementById("country");
-const searchButton = document.getElementById("search");
 const weatherInfo = document.getElementById("weather-info");
 const errorMessage = document.getElementById("error-message");
 
@@ -12,12 +12,19 @@ const temperatureEl = document.getElementById("temperature");
 const humidityEl = document.getElementById("humidity");
 const windEl = document.getElementById("wind");
 
-searchButton.addEventListener("click", () => {
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    
     const city = cityInput.value.trim();
     const country = countryInput.value.trim();
-    
-    if (city === "") {
-        showError("Por favor, ingresa el nombre de una ciudad.");
+
+    if (!city && !country) {
+        showError("Por favor, ingresa al menos una ciudad.");
+        return;
+    }
+
+    if (!city && country) {
+        showError("Debes ingresar una ciudad junto con el país.");
         return;
     }
 
@@ -26,11 +33,14 @@ searchButton.addEventListener("click", () => {
     fetch(url)
         .then(response => {
             if (!response.ok) {
-                throw new Error("Ciudad no encontrada");
+                throw new Error("Ciudad o país no encontrados.");
             }
             return response.json();
         })
         .then(data => {
+            if (country && data.sys && data.sys.country.toLowerCase() !== country.toLowerCase()) {
+                throw new Error("Los datos no coinciden con la ubicación ingresada.");
+            }
             showWeather(data);
         })
         .catch(error => {
