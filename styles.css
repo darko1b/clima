@@ -1,9 +1,9 @@
 body{ 
     font-family: Arial, Helvetica, sans-serif; 
-    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    background: linear-gradient(135deg, #a8edea, #fed6e3); 
     display: flex; 
-    justify-content: center; 
-    align-items: center;
+    justify-content: center;
+    align-items: center; 
     min-height: 100vh; 
     margin: 0; 
     padding: 20px;
@@ -14,8 +14,8 @@ body{
     background-color: white; 
     padding: 30px; 
     border-radius: 20px; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    width: 100%; 
     max-width: 400px;
 } 
 
@@ -38,9 +38,9 @@ h1{
 } 
 
 button{ 
-    padding: 10px;
+    padding: 10px; 
     background-color: #4facfe; 
-    color: white;
+    color: white; 
     border: none; 
     border-radius: 10px; 
     cursor: pointer; 
@@ -54,9 +54,23 @@ button:hover{
 
 .weather-card{ 
     background-color: #f0f9ff; 
-    padding: 20px;
+    padding: 20px; 
+    border-radius: 15px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 20px;
+} 
+
+#map-container{ 
+    background-color: #f0f9ff; 
+    padding: 20px; 
     border-radius: 15px; 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+} 
+
+#map{ 
+    height: 300px; 
+    width: 100%; 
+    border-radius: 10px;
 } 
 
 .hidden{ 
@@ -79,5 +93,9 @@ button:hover{
 
     button, .search-box input{ 
         font-size: 0.9rem;
+    } 
+
+    #map{ 
+        height: 250px;
     }
 } 

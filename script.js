@@ -5,12 +5,16 @@ const cityInput = document.getElementById("city");
 const countryInput = document.getElementById("country");
 const weatherInfo = document.getElementById("weather-info");
 const errorMessage = document.getElementById("error-message");
+const mapContainer = document.getElementById("map-container");
 
 const locationEl = document.getElementById("location");
 const descriptionEl = document.getElementById("description");
 const temperatureEl = document.getElementById("temperature");
 const humidityEl = document.getElementById("humidity");
 const windEl = document.getElementById("wind");
+
+let map = null;
+let marker = null;
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -42,6 +46,7 @@ form.addEventListener("submit", (event) => {
                 throw new Error("Los datos no coinciden con la ubicación ingresada.");
             }
             showWeather(data);
+            showMap(data.coord.lat, data.coord.lon, data.name);
         })
         .catch(error => {
             showError(error.message);
@@ -60,8 +65,41 @@ function showWeather(data) {
     errorMessage.classList.add("hidden");
 }
 
+function showMap(lat, lon, cityName) {
+    mapContainer.classList.remove("hidden");
+    
+    setTimeout(() => {
+        if (map) {
+            map.setView([lat, lon], 10);
+            if (marker) {
+                marker.setLatLng([lat, lon]);
+            } else {
+                marker = L.marker([lat, lon]).addTo(map)
+                    .bindPopup(cityName)
+                    .openPopup();
+            }
+            map.invalidateSize();
+        } else {
+            map = L.map('map').setView([lat, lon], 10);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            marker = L.marker([lat, lon]).addTo(map)
+                .bindPopup(cityName)
+                .openPopup();
+            
+            setTimeout(() => {
+                map.invalidateSize();
+            }, 100);
+        }
+    }, 50);
+}
+
 function showError(msg) {
     errorMessage.textContent = msg;
     errorMessage.classList.remove("hidden");
     weatherInfo.classList.add("hidden");
+    mapContainer.classList.add("hidden");
 }
